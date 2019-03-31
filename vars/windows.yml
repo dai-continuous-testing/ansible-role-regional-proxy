@@ -1,0 +1,13 @@
+---
+
+installation_folder: "C:\\Experitest\\{{ app_name }}-{{ app_version }}"
+
+temp_folder: "c:\\temp\\experitest"
+
+service_name: "{{ app_name }}"
+
+installer_file_name: "dist-Windows-PROXY-{{ app_version }}.zip"
+
+relative_path: "regional-nginx/windows"
+
+launcher_file_name: "start.bat"

@@ -1,0 +1,29 @@
+---
+
+app_name: regional-proxy
+app_version: 12.4.5403
+
+service_name: "com.experitest.{{ app_name }}"
+main_class: "com.experitest.nginx.ManagerMain"
+
+server_port: 8085
+jmx_port: 51239
+
+base_application_properties:
+  - "server.port": "{{ server_port }}"
+
+extra_application_properties: {}
+
+application_properties: "{{ base_application_properties | combine(extra_application_properties) }}"
+
+start_after_install: True
+
+clear_temp_folder: False
+clear_before_install: False
+
+convention: "Proxy"
+
+custom_download_url: ""
+
+cdn_name: "devops-artifacts.experitest.com"
+s3_download_url : "https://{{ cdn_name }}/{{ relative_path }}/{{ installer_file_name }}"

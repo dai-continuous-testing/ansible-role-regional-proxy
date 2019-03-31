@@ -1,0 +1,4 @@
+
+- src: git+https://github.com/ExperitestOfficial/ansible-role-file-storage.git
+  version: master
+  name: file-storage
