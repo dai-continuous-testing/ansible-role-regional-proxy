@@ -16,8 +16,6 @@
   - installer_file_name
   - s3_download_url
   - launcher_file_name
-  - maximum_storage_size
-  - maximum_file_size
   - application_properties
 
 # required dependencies

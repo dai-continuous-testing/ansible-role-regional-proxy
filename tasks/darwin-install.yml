@@ -17,8 +17,6 @@
   - ansible_user_id
   - s3_download_url
   - launcher_file_name
-  - maximum_storage_size
-  - maximum_file_size
   - application_properties
 
 # required dependencies
@@ -149,7 +147,7 @@
 
 - name: set permissions to execute nginx
   file:
-    path: "{{ installation_folder }}/bin/nginx"
+    path: "{{ installation_folder }}/bin/nginx/bin/nginx"
     state: file
     mode: 0777
   become: yes
