@@ -18,6 +18,7 @@
   - s3_download_url
   - launcher_file_name
   - application_properties
+  - extra_java_options  
 
 # required dependencies
 

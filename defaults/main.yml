@@ -9,6 +9,8 @@ main_class: "com.experitest.nginx.ManagerMain"
 server_port: 8085
 jmx_port: 51239
 
+extra_java_options: []
+
 base_application_properties:
   - "server.port": "{{ server_port }}"
 
