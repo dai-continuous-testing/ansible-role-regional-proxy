@@ -21,6 +21,12 @@
 
 # required dependencies
 
+- name: disabled win_chocolatey_feature(useEnhancedExitCodes)
+  # workaroud a know issue of win chochlatey
+  win_chocolatey_feature:
+    name: useEnhancedExitCodes
+    state: disabled
+
 - name: install nssm dependency
   win_chocolatey:
     name: nssm
