@@ -1,4 +1,4 @@
 
-- src: git+https://github.com/ExperitestOfficial/ansible-role-file-storage.git
+- src: git+https://github.com/ExperitestOfficial/ansible-role-regional-proxy.git
   version: master
-  name: file-storage
+  name: regional-proxy
