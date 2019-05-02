@@ -19,7 +19,7 @@ Role Variables
 | server_port | port number for the server | number | 8085 | no |
 | extra_application_properties | additional props to be override in application.properties file | dict | {} | no |
 | extra_java_options | extand java options | array of strings | [] | no |
-| installation_folder | the folder in which the applction will be installed | string | for mac: ~/experitest/regional-proxy-version <br> for windows: C:\\Experitest\\regional-proxy-version  | no |
+| installation_folder | the folder in which the applction will be installed | string | for mac: /Applications/Experitest/regional-proxy-version <br> for windows: C:\\Experitest\\regional-proxy-version  | no |
 | jmx_port | port number for jmx inspection | number | 51239 | no |
 | custom_download_url | custom url to download the installation from (zip format) | string |  | no |
 | start_after_install | should application start after installation is completed | boolean | True | no |
