@@ -1,7 +1,7 @@
 ---
 
 app_name: regional-proxy
-app_version: 12.4.5403
+app_version: 12.5.5898
 
 service_name: "com.experitest.{{ app_name }}"
 main_class: "com.experitest.nginx.ManagerMain"
