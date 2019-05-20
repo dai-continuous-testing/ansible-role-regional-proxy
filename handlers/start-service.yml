@@ -31,6 +31,7 @@
       win_health_check:
         url: "http://localhost:{{ health_check_port | default(server_port) }}{{ health_check_uri | default('/manage/health') }}"
         expected_status: "{{ health_check_status | default('200') }}"
+        max_retries: "{{ health_check_max_retries | default('10') }}"
   
   become: yes
   when: ansible_os_family == 'Windows'
@@ -45,6 +46,7 @@
       health_check:
         url: "http://localhost:{{ health_check_port | default(server_port) }}{{ health_check_uri | default('/manage/health') }}"
         expected_status: "{{ health_check_status | default('200') }}"
+        max_retries: "{{ health_check_max_retries | default('10') }}"
 
   become: yes
   when: ansible_os_family == 'Darwin'
