@@ -1,0 +1,29 @@
+
+- name: start the service (windows)
+  win_service: 
+    name: "{{ service_name }}"
+    state: started
+  register: winsvc_state
+  ignore_errors: True    
+  become: yes
+
+- name: read logs if service failed (windows)
+  win_shell: "Get-Content -tail 100 {{ installation_folder }}\\logs\\server.err.log"
+  when: winsvc_state.failed
+  register: error_log
+
+- name: print log file
+  debug:
+    var: error_log
+  when: winsvc_state.failed
+
+- name: fail if start failed
+  fail: 
+    msg: service start failed
+  when: winsvc_state.failed
+
+- name: wait for service to start
+  win_health_check:
+    url: "http://localhost:{{ health_check_port | default(server_port) }}{{ health_check_uri | default('/manage/health') }}"
+    expected_status: "{{ health_check_status | default('200') }}"
+    max_retries: "{{ health_check_max_retries | default('10') }}"
