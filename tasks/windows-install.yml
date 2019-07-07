@@ -140,7 +140,7 @@
 
 - name: reset pairing key
   win_file:
-    path: "{{ installation_folder }}\\config\\pairing.conf.xml"
+    path: "{{ installation_folder }}\\config\\{{ pairing_file_name }}"
     state: absent
   become: yes
 

@@ -38,4 +38,6 @@ s3_download_url: "https://{{ cdn_name }}/{{ relative_path }}/{{ installer_file_n
 
 # 
 
+pairing_file_name: pairing
+
 health_check_status: 401
