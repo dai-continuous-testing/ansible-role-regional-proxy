@@ -7,7 +7,7 @@ required_modifiable_fields:
   - installation_folder
 
 app_name: regional-proxy
-__app_version: 12.6.6237
+__app_version: 12.7.6640
 
 service_name: "com.experitest.{{ app_name }}"
 main_class: "com.experitest.nginx.ManagerMain"
