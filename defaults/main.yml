@@ -5,7 +5,7 @@ required_modifiable_fields:
   - server_port
   - jmx_port
   - installation_folder
-  - java_versions
+  - java_version
 
 app_name: regional-proxy
 __app_version: 12.8.7025
