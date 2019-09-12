@@ -5,6 +5,7 @@ required_modifiable_fields:
   - server_port
   - jmx_port
   - installation_folder
+  - java_version
 
 app_name: regional-proxy
 __app_version: 12.8.7025
@@ -14,6 +15,8 @@ main_class: "com.experitest.nginx.ManagerMain"
 
 __server_port: 8085
 __jmx_port: 51239
+
+__java_version: 1.8.0_181
 
 extra_java_options: []
 
@@ -35,6 +38,8 @@ custom_download_url: ""
 
 cdn_name: "devops-artifacts.experitest.com"
 s3_download_url: "https://{{ cdn_name }}/{{ relative_path }}/{{ installer_file_name }}"
+
+java_download_url: "https://{{ cdn_name }}/{{ java_relative_path }}/{{ java_download_filename }}"
 
 # 
 
