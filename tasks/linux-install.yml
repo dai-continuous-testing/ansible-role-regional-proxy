@@ -34,9 +34,15 @@
     state: present
   become: yes
 
-- name: make sure nginx is installed    # ? need to confirm if this required ?
+- name: make sure nginx is installed
   package:
     name: nginx
+    state: present
+  become: yes
+
+- name: make sure psmisc (killall) is installed
+  package:
+    name: psmisc
     state: present
   become: yes
 
@@ -194,12 +200,16 @@
     owner: "{{ ansible_user_id }}"
   become: yes
 
-- name: set permissions to execute nginx
-  file:
-    path: "{{ installation_folder }}/bin/nginx/bin/nginx"
-    state: file
+- name: copy nginx linux binary to installation folder
+  copy:
+    src: /sbin/nginx
+    dest: "{{ item }}"
     mode: 0777
+    remote_src: yes
   become: yes
+  with_items:
+    - "{{ installation_folder }}/bin/nginx/bin/nginx"
+    - "{{ installation_folder }}/bin/nginx/bin/nginx.exe"
 
 - name: reset pairing key
   file:
