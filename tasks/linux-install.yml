@@ -162,6 +162,17 @@
     owner: "{{ ansible_user_id }}"
   become: yes
 
+- name: copy nginx binary to bin
+  copy:
+    src: /sbin/nginx
+    dest: "{{ temp_folder }}/{{ (installer_file_name | splitext)[0] }}/{{ convention }}/{{ item }}"
+    mode: 0777
+    remote_src: yes
+  become: yes
+  with_items:
+    - "bin/nginx/bin/nginx"
+    - "bin/nginx/bin/nginx.exe"
+
 - name: synchronize zip content to installation folder
   command: "rsync -r {{ temp_folder }}/{{ (installer_file_name | splitext)[0] }}/{{ convention }}/ {{ installation_folder }}/"
   become: yes
@@ -199,17 +210,6 @@
     mode: 0777
     owner: "{{ ansible_user_id }}"
   become: yes
-
-- name: copy nginx linux binary to installation folder
-  copy:
-    src: /sbin/nginx
-    dest: "{{ item }}"
-    mode: 0777
-    remote_src: yes
-  become: yes
-  with_items:
-    - "{{ installation_folder }}/bin/nginx/bin/nginx"
-    - "{{ installation_folder }}/bin/nginx/bin/nginx.exe"
 
 - name: reset pairing key
   file:
