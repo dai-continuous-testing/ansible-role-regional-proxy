@@ -162,17 +162,6 @@
     owner: "{{ ansible_user_id }}"
   become: yes
 
-- name: copy nginx binary to bin
-  copy:
-    src: /sbin/nginx
-    dest: "{{ temp_folder }}/{{ (installer_file_name | splitext)[0] }}/{{ convention }}/{{ item }}"
-    mode: 0777
-    remote_src: yes
-  become: yes
-  with_items:
-    - "bin/nginx/bin/nginx"
-    - "bin/nginx/bin/nginx.exe"
-
 - name: synchronize zip content to installation folder
   command: "rsync -r {{ temp_folder }}/{{ (installer_file_name | splitext)[0] }}/{{ convention }}/ {{ installation_folder }}/"
   become: yes
@@ -203,12 +192,29 @@
   with_dict: "{{ application_properties }}"
   become: yes
 
+- name: update nginx property to application properties file
+  lineinfile:
+    path: "{{ installation_folder }}/config/application.properties"
+    line: "{{ item.key }}={{ item.value }}"
+    regexp: "^{{ item.key | replace('.', '\\.') }}="
+  with_dict: "{{ nginx_application_properties }}"
+  become: yes
+
 - name: set permissions for logs folder
   file:
     path: "{{ installation_folder }}/logs"
     state: directory
     mode: 0777
     owner: "{{ ansible_user_id }}"
+  become: yes
+
+- name: update permissions for nginx logs folder
+  file:
+    path: "{{ nginx_logs }}"
+    state: directory
+    mode: 0777
+    recurse: yes
+    owner: "{{ nginx_user }}"
   become: yes
 
 - name: reset pairing key

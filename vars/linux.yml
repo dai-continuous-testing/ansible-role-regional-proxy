@@ -25,3 +25,13 @@ java_relative_path: "java/linux"
 java_installation_folder: "{{ installation_root_folder }}/jre"
 
 java_bin: "{{ java_installation_folder }}/jre{{ java_version }}/bin/java"
+
+nginx_user: nginx
+nginx_conf: /etc/nginx
+nginx_logs: /var/log/nginx
+
+nginx_application_properties:
+  - "nginx-manager.user": "{{ nginx_user }}"
+  - "nginx-manager.nginx-conf-location": "{{ nginx_conf }}"
+  - "nginx-manager.nginx-logs-location": "{{ nginx_logs }}"
+  - "nginx-manager.nginx-pid-file": "/run/nginx.pid"

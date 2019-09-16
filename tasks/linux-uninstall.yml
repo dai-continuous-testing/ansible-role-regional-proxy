@@ -19,6 +19,14 @@
   when: "service_name in services"
   become: yes
 
+- name: stop nginx service
+  service:
+    name: nginx
+    state: stopped
+    enabled: no
+  when: "service_name in services"
+  become: yes
+
 - name: remove the service
   file:
     path: "{{ service_file_path }}"
