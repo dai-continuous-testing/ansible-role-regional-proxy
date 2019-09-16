@@ -1,7 +1,8 @@
 Experitest - Regional Proxy ansible role
 =========
 
-This role will install \ uninstall regional proxy for windows, linux and mac os hosts
+This role will install \ uninstall regional proxy for windows, linux and mac os hosts <br>
+For linux, the nginx conf and error logs folders are "nginx_conf: /etc/nginx" and  "nginx_logs: /var/log/nginx"
 
 Requirements
 ------------
