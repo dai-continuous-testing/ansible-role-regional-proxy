@@ -26,6 +26,7 @@ Role Variables
 | start_after_install | should application start after installation is completed | boolean | True | no |
 | clear_temp_folder | remove temp folder after installation | boolean | False | no |
 | clear_before_install | removing old installation before installing new version | boolean | False | no |
+| kill_notepad | kill notepad/notepadd++ apps on windows | boolean | False | no |
 
 Example Playbook
 ----------------
