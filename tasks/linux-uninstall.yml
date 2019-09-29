@@ -1,0 +1,57 @@
+
+- name: assert all vars are set
+  assert: { that: "{{ item }} != '' " }
+  with_items:
+  - app_name
+  - service_name
+  - installation_root_folder
+  - service_file_path
+  - temp_folder
+
+- name: gather installed services
+  service_facts:
+
+- name: stop the service
+  service:
+    name: "{{ service_name }}"
+    state: stopped
+    enabled: no
+  when: "service_name in services"
+  become: yes
+
+- name: stop nginx service
+  service:
+    name: nginx
+    state: stopped
+    enabled: no
+  when: "service_name in services"
+  become: yes
+
+- name: remove the service
+  file:
+    path: "{{ service_file_path }}"
+    state: absent
+  become: yes
+
+- name: remove tracking files
+  file: 
+    path: "{{ installation_root_folder }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ app_name }}-previous"
+    - "{{ app_name }}-current"
+  become: yes
+
+- name: find app versions
+  find:
+    path: "{{ installation_root_folder }}"
+    pattern: "{{ app_name }}-*"
+    file_type: directory
+  register: application_versions
+
+- name: remove application versions
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ application_versions.files }}"
+  become: yes

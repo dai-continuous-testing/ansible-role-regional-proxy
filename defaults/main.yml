@@ -10,7 +10,6 @@ required_modifiable_fields:
 app_name: regional-proxy
 __app_version: 12.9.7234
 
-service_name: "com.experitest.{{ app_name }}"
 main_class: "com.experitest.nginx.ManagerMain"
 
 __server_port: 8085
