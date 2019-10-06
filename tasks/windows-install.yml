@@ -18,6 +18,7 @@
   - launcher_file_name
   - application_properties
   - extra_java_options
+  - kill_notepad
 
 # required dependencies
 
