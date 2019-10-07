@@ -18,6 +18,7 @@
   - launcher_file_name
   - application_properties
   - extra_java_options
+  - kill_notepad
 
 # required dependencies
 
@@ -178,6 +179,14 @@
   with_dict: "{{ application_properties }}"
   become: yes
 
+- name: update logback properties file
+  win_lineinfile:
+    path: "{{ installation_folder }}\\config\\logback.properties"
+    line: "{{ item.key }}={{ item.value }}"
+    regexp: "^{{ item.key | replace('.', '\\.') }}="
+  with_dict: "{{ logback_properties }}"
+  become: yes
+  
 - name: set permissions for logs folder
   win_file:
     path: "{{ installation_folder }}\\logs"
