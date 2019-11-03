@@ -4,7 +4,6 @@
   with_items:
   - service_name
   - installation_root_folder
-  - temp_folder
 
 - name: stop the old service
   win_nssm:

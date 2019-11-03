@@ -4,7 +4,6 @@
   with_items:
   - installation_root_folder
   - service_plist_file_path
-  - temp_folder
 
 - name: stop the service
   command: "launchctl unload {{ service_plist_file_path }}"
