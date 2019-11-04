@@ -7,8 +7,8 @@ For linux, the nginx conf and error logs folders are "nginx_conf: /etc/nginx" an
 Requirements
 ------------
 
-[ansible-role-java8](https://github.com/ExperitestOfficial/ansible-role-java8) must be installed on all machines. <br>
-Supports windows, linux and mac os hosts only.
+* [ansible-role-java8](https://github.com/ExperitestOfficial/ansible-role-java8) must be installed on all machines. <br>
+* Supports windows, linux and mac os hosts only.
 
 Role Variables
 --------------
@@ -21,7 +21,7 @@ Role Variables
 | extra_application_properties | additional props to be override in application.properties file | dict | {} | no |
 | extra_logback_properties | additional props to be override in logback.properties file | dict | {} | no |
 | extra_java_options | extand java options | array of strings | [] | no |
-| installation_folder | the folder in which the applction will be installed | string | for mac: /Applications/Experitest/regional-proxy-version <br> for windows: C:\\Experitest\\regional-proxy-version <br> for linux: /opt/Experitest/regional-proxy-version | no |
+| installation_root_folder | the root folder in which the application will be installed under regional-proxy-{version} folder | string | for mac: /Applications/Experitest <br> for windows: C:\\Experitest <br> for linux: /opt/Experitest | no |
 | jmx_port | port number for jmx inspection | number | 51239 | no |
 | java_version | java jre version to install | string | 1.8.0_181 | no |
 | custom_download_url | custom url to download the installation from (zip format) | string |  | no |

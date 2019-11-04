@@ -4,7 +4,6 @@
   with_items:
   - installation_root_folder
   - service_plist_file_path
-  - temp_folder
 
 - name: stop the service
   command: "launchctl unload {{ service_plist_file_path }}"
@@ -16,11 +15,12 @@
     state: absent
   become: yes
 
-- name: remove temp folder
-  file:
-    path: "{{ temp_folder }}"
-    state: absent
-  when: clear_temp_folder | default('no') | bool
+- name: kill nginx processes
+  shell: |
+    killall nginx
+  register: killnginxresult
+  changed_when: killnginxresult.rc == 0
+  failed_when: killnginxresult.rc != 0 and killnginxresult.rc != 1
   become: yes
 
 - name: remove tracking files

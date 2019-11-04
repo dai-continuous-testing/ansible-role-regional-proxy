@@ -4,7 +4,6 @@
   with_items:
   - service_name
   - installation_root_folder
-  - temp_folder
 
 - name: stop the old service
   win_nssm:
@@ -12,11 +11,13 @@
     state: absent
   become: yes
 
-- name: remove temp folder
-  win_file:
-    path: "{{ temp_folder }}"
-    state: absent
-  when: clear_temp_folder | default('no') | bool
+- name: kill nginx process
+  win_shell: |
+    taskkill /F /IM nginx.exe
+  register: killnginx
+  changed_when: killnginx.rc == 0 and 'The process "nginx.exe" not found.' not in killnginx.stderr
+  failed_when: killnginx.rc != 0 and 'The process "nginx.exe" not found.' not in killnginx.stderr
+  become: yes
 
 - name: remove tracking files
   win_file: 
@@ -37,5 +38,6 @@
     path: "{{ installation_root_folder }}\\{{ item }}"
     state: absent
   with_items: "{{ application_versions.stdout_lines }}"
+  become: yes
   when: 
     - item | regex_search("{{ app_name }}-")
