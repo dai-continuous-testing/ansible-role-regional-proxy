@@ -209,7 +209,6 @@
     state: directory
     mode: 0777
     recurse: yes
-    owner: "{{ nginx_user }}"
   become: yes
 
 - name: reset pairing key
