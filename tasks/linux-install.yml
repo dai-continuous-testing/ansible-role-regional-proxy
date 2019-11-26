@@ -203,6 +203,16 @@
     owner: "{{ ansible_user_id }}"
   become: yes
 
+- name: create nginx user
+  user:
+    name: "{{ nginx_user }}"
+    comment: Nginx web server
+    system: yes
+    create_home: no
+    home: /var/lib/nginx
+    shell: /sbin/nologin
+    state: present
+
 - name: update permissions for nginx logs folder
   file:
     path: "{{ nginx_logs }}"
