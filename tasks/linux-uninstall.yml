@@ -67,7 +67,6 @@
   user:
     name: "{{ nginx_user }}"
     state: absent
-    remove: yes
   become: yes
 
 - name: remove nginx group
