@@ -212,6 +212,7 @@
     home: /var/lib/nginx
     shell: /sbin/nologin
     state: present
+  become: yes
 
 - name: update permissions for nginx logs folder
   file:
