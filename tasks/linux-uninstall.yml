@@ -26,6 +26,12 @@
   when: "'nginx.service' in services"
   become: yes
 
+- name: kill nginx process
+  command: killall nginx
+  changed_when: no
+  ignore_errors: yes
+  become: yes
+
 - name: remove the service
   file:
     path: "{{ service_file_path }}"
