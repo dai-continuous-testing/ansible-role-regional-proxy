@@ -214,9 +214,21 @@
     state: present
   become: yes
 
-- name: update permissions for nginx logs folder
+# # need to check if permission required for nginx logs
+#
+# - name: update permissions for nginx logs folder
+#   file:
+#     path: "{{ nginx_logs }}"
+#     state: directory
+#     mode: 0777
+#     recurse: yes
+#     owner: "{{ nginx_user }}"
+#   become: yes
+
+
+- name: update permissions for /var/lib/nginx folder
   file:
-    path: "{{ nginx_logs }}"
+    path: /var/lib/nginx 
     state: directory
     mode: 0777
     recurse: yes
