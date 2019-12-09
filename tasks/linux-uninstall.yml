@@ -64,9 +64,10 @@
 # remove nginx
 
 - name: remove nginx package
-  package:
+  yum:
     name: nginx
     state: absent
+    lock_timeout: 180
   become: yes
 
 - name: remove nginx user

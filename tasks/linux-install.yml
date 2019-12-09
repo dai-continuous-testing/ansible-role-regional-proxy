@@ -23,33 +23,38 @@
 # required dependencies
 
 - name: make sure epel-release is installed
-  package:
+  yum:
     name: epel-release
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure rsync is installed
-  package:
+  yum:
     name: rsync
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure unzip is installed
-  package:
+  yum:
     name: unzip
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure nginx is installed
-  package:
+  yum:
     name: nginx
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure psmisc (killall) is installed
-  package:
+  yum:
     name: psmisc
     state: present
+    lock_timeout: 180
   become: yes
 
 # disable selinux and firewalld
