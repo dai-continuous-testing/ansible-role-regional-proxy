@@ -230,7 +230,7 @@
   file:
     path: /var/lib/nginx 
     state: directory
-    mode: 0777
+    mode: '0777'
     recurse: yes
     owner: "{{ nginx_user }}"
   become: yes
