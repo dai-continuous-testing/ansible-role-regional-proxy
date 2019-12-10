@@ -16,11 +16,12 @@ Role Variables
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | state | should the application be present or absent | present, absent | present | no |
-| app_version | application version to install | string | 12.8.7025 | no |
+| app_version | application version to install | string | 12.12.7794 | no |
 | server_port | port number for the server | number | 8085 | no |
 | extra_application_properties | additional props to be override in application.properties file | dict | {} | no |
 | extra_logback_properties | additional props to be override in logback.properties file | dict | {} | no |
 | extra_java_options | extand java options | array of strings | [] | no |
+| installer_checksum | sha256 hash value to download and check the integrity of the installer file, to get hash value refer release notes | string |  | no |
 | installation_root_folder | the root folder in which the application will be installed under regional-proxy-{version} folder | string | for mac: /Applications/Experitest <br> for windows: C:\\Experitest <br> for linux: /opt/Experitest | no |
 | jmx_port | port number for jmx inspection | number | 51239 | no |
 | java_version | java jre version to install | string | 1.8.0_181 | no |

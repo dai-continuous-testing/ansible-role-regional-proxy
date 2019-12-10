@@ -6,9 +6,14 @@ required_modifiable_fields:
   - jmx_port
   - installation_root_folder
   - java_version
+  - installer_checksum
 
 app_name: regional-proxy
-__app_version: 12.10.7560
+__app_version: 12.12.7794
+
+darwin_installer_checksum: "82e20972c086bdf2f21c7b16c3df2c2bf09ed88a0fc3c4055502d88fbdecf5b9"
+linux_installer_checksum: "983522258ef3b39c6f2f08600fd14f73ce5e6ab1de567aece802e5907b13481b"
+windows_installer_checksum: "62b4dff5c5065ec6247ac1bede51a24dbedff13b7215432962c6e7f8c88a307e"
 
 main_class: "com.experitest.nginx.ManagerMain"
 
