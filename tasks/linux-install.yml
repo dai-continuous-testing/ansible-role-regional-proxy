@@ -23,33 +23,38 @@
 # required dependencies
 
 - name: make sure epel-release is installed
-  package:
+  yum:
     name: epel-release
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure rsync is installed
-  package:
+  yum:
     name: rsync
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure unzip is installed
-  package:
+  yum:
     name: unzip
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure nginx is installed
-  package:
+  yum:
     name: nginx
     state: present
+    lock_timeout: 180
   become: yes
 
 - name: make sure psmisc (killall) is installed
-  package:
+  yum:
     name: psmisc
     state: present
+    lock_timeout: 180
   become: yes
 
 # disable selinux and firewalld
@@ -203,11 +208,34 @@
     owner: "{{ ansible_user_id }}"
   become: yes
 
-- name: update permissions for nginx logs folder
+- name: create nginx user
+  user:
+    name: "{{ nginx_user }}"
+    comment: Nginx web server
+    system: yes
+    create_home: no
+    home: /var/lib/nginx
+    shell: /sbin/nologin
+    state: present
+  become: yes
+
+# # need to check if permission required for nginx logs
+#
+# - name: update permissions for nginx logs folder
+#   file:
+#     path: "{{ nginx_logs }}"
+#     state: directory
+#     mode: 0777
+#     recurse: yes
+#     owner: "{{ nginx_user }}"
+#   become: yes
+
+
+- name: update permissions for /var/lib/nginx folder
   file:
-    path: "{{ nginx_logs }}"
+    path: /var/lib/nginx 
     state: directory
-    mode: 0777
+    mode: '0777'
     recurse: yes
     owner: "{{ nginx_user }}"
   become: yes

@@ -23,7 +23,13 @@
     name: nginx
     state: stopped
     enabled: no
-  when: "service_name in services"
+  when: "'nginx.service' in services"
+  become: yes
+
+- name: kill nginx process
+  command: killall nginx
+  changed_when: no
+  ignore_errors: yes
   become: yes
 
 - name: remove the service
@@ -53,4 +59,37 @@
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ application_versions.files }}"
+  become: yes
+
+# remove nginx
+
+- name: remove nginx package
+  yum:
+    name: nginx
+    state: absent
+    lock_timeout: 180
+  become: yes
+
+- name: remove nginx user
+  user:
+    name: "{{ nginx_user }}"
+    state: absent
+  become: yes
+
+- name: remove nginx group
+  group:
+    name: "{{ nginx_user }}"
+    state: absent
+  become: yes
+
+- name: remove nginx conf folder
+  file:
+    path: "{{ nginx_conf }}"
+    state: absent
+  become: yes
+
+- name: remove nginx logs folder
+  file:
+    path: "{{ nginx_logs }}"
+    state: absent
   become: yes
