@@ -1,5 +1,12 @@
 
-- name: start the service
+- name: start nginx service
+  systemd:
+    state: started
+    name: nginx
+    enabled: yes
+  become: yes
+
+- name: start the regional-proxy service
   systemd:
     state: started
     daemon_reload: yes

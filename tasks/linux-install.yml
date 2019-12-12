@@ -124,6 +124,19 @@
   ignore_errors: yes
   become: yes
 
+- name: stop the nginx service
+  systemd:
+    name: nginx
+    state: stopped
+  ignore_errors: yes
+  become: yes
+
+- name: kill nginx old process
+  command: killall nginx
+  changed_when: no
+  ignore_errors: yes
+  become: yes
+  
 # delete old installation (optional)
 
 - name: clear old installation folder
@@ -222,17 +235,15 @@
     state: present
   become: yes
 
-# # need to check if permission required for nginx logs
-#
-# - name: update permissions for nginx logs folder
-#   file:
-#     path: "{{ nginx_logs }}"
-#     state: directory
-#     mode: 0777
-#     recurse: yes
-#     owner: "{{ nginx_user }}"
-#   become: yes
-
+# need to check if permission required for nginx logs
+- name: update permissions for nginx logs folder
+  file:
+    path: "{{ nginx_logs }}"
+    state: directory
+    mode: 0777
+    recurse: yes
+    owner: "{{ nginx_user }}"
+  become: yes
 
 - name: update permissions for /var/lib/nginx folder
   file:
