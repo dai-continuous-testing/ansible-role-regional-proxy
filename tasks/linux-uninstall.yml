@@ -26,10 +26,12 @@
   when: "'nginx.service' in services"
   become: yes
 
-- name: kill nginx process
-  command: killall nginx
-  changed_when: no
-  ignore_errors: yes
+- name: kill nginx processes
+  shell: |
+    killall nginx
+  register: killnginxresult
+  changed_when: killnginxresult.rc == 0
+  failed_when: killnginxresult.rc != 0 and killnginxresult.rc != 1
   become: yes
 
 - name: remove the service

@@ -128,10 +128,12 @@
   ignore_errors: yes
   become: yes
 
-- name: kill nginx old process
-  command: killall nginx
-  changed_when: no
-  ignore_errors: yes
+- name: kill nginx processes
+  shell: |
+    killall nginx
+  register: killnginxresult
+  changed_when: killnginxresult.rc == 0
+  failed_when: killnginxresult.rc != 0 and killnginxresult.rc != 1
   become: yes
   
 # delete old installation (optional)
