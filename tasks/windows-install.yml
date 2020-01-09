@@ -237,3 +237,4 @@
       jmx_port: "{{ jmx_port }}"
       installation_folder: "{{ installation_folder }}"
       configuration_file: "{{ installation_folder }}\\config\\application.properties"
+      service_name: "{{ service_name }}"
