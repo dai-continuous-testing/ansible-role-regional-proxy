@@ -32,6 +32,7 @@
   register: killnginxresult
   changed_when: killnginxresult.rc == 0
   failed_when: killnginxresult.rc != 0 and killnginxresult.rc != 1
+  ignore_errors: yes
   become: yes
 
 - name: remove the service
