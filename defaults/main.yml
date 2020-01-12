@@ -8,7 +8,7 @@ required_modifiable_fields:
   - java_version
 
 app_name: regional-proxy
-__app_version: 12.12.7954
+__app_version: 12.12.7989
 
 linux_installer_checksum: "17ea3c7218acc55a077c0c111078e78a8a90f49483504cb7579aa4cb64e241b2"
 windows_installer_checksum: "c5bca4dd15a4e354dcbd5a8dc3d9251ff5453824d5363e1f67a55f9914ef07ef"
