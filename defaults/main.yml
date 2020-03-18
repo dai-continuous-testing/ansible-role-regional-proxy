@@ -12,6 +12,8 @@ __app_version: 20.2.8326
 
 main_class: "com.experitest.nginx.ManagerMain"
 
+__deployment_mode: online
+
 __server_port: 8085
 __jmx_port: 51239
 
