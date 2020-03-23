@@ -77,6 +77,18 @@
         executable: /bin/bash
       become: yes
       
+    - name: copy nginx packages folder from shared storage folder
+      copy:
+        src: "{{ shared_storage_folder }}/prereq_linux_nginx"
+        dest: "{{ temp_folder }}/"
+        remote_src: no
+
+    - name: make sure nginx is installed
+      shell: "yum localinstall -y {{ temp_folder }}/prereq_linux_nginx/*.rpm"
+      args:
+        executable: /bin/bash
+      become: yes
+
   when: deployment_mode == "offline"
 
 # disable selinux and firewalld
