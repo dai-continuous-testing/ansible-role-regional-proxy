@@ -50,7 +50,7 @@
     - name: pause for 20 seconds if first attempt failed
       pause:
         seconds: 20
-      when: remove_appver_first_try.failed
+      when: remove_oldver_first_try is failed
 
     - name: remove application versions - second attempt
       win_file:
@@ -59,6 +59,6 @@
       with_items: "{{ application_versions.stdout_lines }}"
       when: 
         - item | regex_search("{{ app_name }}-")
-        - remove_appver_first_try.failed
+        - remove_oldver_first_try is failed
       ignore_errors: yes
 
