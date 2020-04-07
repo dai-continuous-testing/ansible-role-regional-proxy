@@ -6,6 +6,7 @@ required_modifiable_fields:
   - jmx_port
   - installation_root_folder
   - java_version
+  - deployment_mode
 
 app_name: regional-proxy
 __app_version: 20.2.8326
