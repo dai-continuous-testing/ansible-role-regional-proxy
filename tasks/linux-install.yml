@@ -19,6 +19,7 @@
   - launcher_file_name
   - application_properties
   - extra_java_options  
+  - logs_folder
 
 # required dependencies
 
@@ -226,10 +227,25 @@
   with_dict: "{{ nginx_application_properties }}"
   become: yes
 
-- name: set permissions for logs folder
+- name: make sure logs folder exists
+  file:
+    path: "{{ logs_folder }}"
+    state: directory
+    mode: 0777
+    owner: "{{ ansible_user_id }}"
+  become: yes
+
+- name: remove existing logs folder from installation folder
   file:
     path: "{{ installation_folder }}/logs"
-    state: directory
+    state: absent
+  become: yes
+
+- name: create sym link for logs folder
+  file:
+    src: "{{ logs_folder }}"
+    dest: "{{ installation_folder }}/logs"
+    state: link
     mode: 0777
     owner: "{{ ansible_user_id }}"
   become: yes
