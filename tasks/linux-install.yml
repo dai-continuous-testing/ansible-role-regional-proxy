@@ -102,21 +102,13 @@
         src: "{{ shared_storage_folder }}/prereq_linux_nginx"
         dest: "{{ temp_folder }}/"
         remote_src: no
-
-    - name: get the list of nginx rpm packages
-      find:
-        path: "{{ temp_folder }}/prereq_linux_nginx"
-        pattern: "*.rpm"
-        file_type: file
-      register: rpm_nginx
-    
+   
     - name: make sure nginx is installed
-      yum:
-        name: "{{ item.path }}"
-        state: present
+      shell: "yum localinstall -y {{ temp_folder }}/prereq_linux_nginx/*.rpm"
+      args:
+        executable: /bin/bash
+        warn: false
       become: yes
-      with_items:
-        - "{{ rpm_nginx.files }}"
 
   when: deployment_mode == "offline"
 
