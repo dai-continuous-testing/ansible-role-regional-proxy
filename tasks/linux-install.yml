@@ -93,6 +93,7 @@
       yum:
         name: "{{ item.path }}"
         state: present
+      become: yes
       with_items:
         - "{{ rpm_packages.files }}"
       
@@ -113,6 +114,7 @@
       yum:
         name: "{{ item.path }}"
         state: present
+      become: yes
       with_items:
         - "{{ rpm_nginx.files }}"
 
