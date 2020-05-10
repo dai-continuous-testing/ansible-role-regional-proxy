@@ -99,12 +99,12 @@
       
     - name: copy nginx packages folder from shared storage folder
       copy:
-        src: "{{ shared_storage_folder }}/prereq_linux_nginx"
+        src: "{{ shared_storage_folder }}/prereq_linux_nginx/el{{ ansible_distribution_major_version }}"
         dest: "{{ temp_folder }}/"
         remote_src: no
    
     - name: make sure nginx is installed
-      shell: "yum localinstall -y {{ temp_folder }}/prereq_linux_nginx/*.rpm"
+      shell: "yum localinstall -y {{ temp_folder }}/prereq_linux_nginx/el{{ ansible_distribution_major_version }}/*.rpm"
       args:
         executable: /bin/bash
         warn: false
