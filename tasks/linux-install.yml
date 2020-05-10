@@ -99,7 +99,7 @@
       
     - name: copy nginx packages folder from shared storage folder
       copy:
-        src: "{{ shared_storage_folder }}/prereq_linux_nginx/el{{ ansible_distribution_major_version }}"
+        src: "{{ shared_storage_folder }}/prereq_linux_nginx"
         dest: "{{ temp_folder }}/"
         remote_src: no
    
