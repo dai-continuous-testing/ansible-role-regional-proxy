@@ -9,6 +9,9 @@ Requirements
 
 * [ansible-role-java8](https://github.com/ExperitestOfficial/ansible-role-java8) must be installed on all machines. <br>
 * Supports windows, linux and mac os hosts only.
+* For multi-region proxy support, keep private and public certifates with the following names in ansible project 'files' folder.
+  * server_private_key.key
+  * server_public_key.crt
 
 Role Variables
 --------------
