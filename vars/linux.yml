@@ -28,6 +28,9 @@ java_installation_folder: "{{ installation_root_folder }}/jre"
 
 java_bin: "{{ java_installation_folder }}/jre{{ java_version }}/bin/java"
 
+__custom_download_username: "myuser"
+__custom_download_password: "mypassword"
+
 nginx_user: nginx
 nginx_conf: /etc/nginx
 nginx_logs: /var/log/nginx
