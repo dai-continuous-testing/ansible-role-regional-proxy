@@ -35,7 +35,7 @@ Role Variables
 | clear_before_install | removing old installation before installing new version | boolean | False | no |
 | kill_notepad | kill notepad/notepadd++ apps on windows | boolean | False | no |
 | nginx_certificate_install | should copy the nginx server certificates to regional proxy machines | boolean | False | no |
-| certificate_folder | should be relative path of certificate folder where the server_private_key.key and server_public_key.crt files kept (e.g. inventories/cloud1/files), it will be useful when nginx_certificate_install is True | string | ./files | no |
+| certificate_folder | should be relative path of certificate folder where the server_private_key.key and server_public_key.crt files kept (e.g. inventories/cloud1/files), it will be useful when nginx_certificate_install is True | string | ./files | when nginx_certificate_install is set to True |
 
 Example Playbook
 ----------------
