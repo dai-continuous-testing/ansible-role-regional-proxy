@@ -293,12 +293,14 @@
       win_copy:
         src: "{{ certificate_folder | default('files') }}/server_private_key.key"
         dest: "{{ nginx_conf }}\\"
+      become: yes
       when: server_key_file.stat.exists
     
     - name: copy nginx server public certificate file
       win_copy:
         src: "{{ certificate_folder | default('files') }}/server_public_key.crt"
         dest: "{{ nginx_conf }}\\"
+      become: yes
       when: server_cert_file.stat.exists
 
   when: nginx_certificate_install == True
