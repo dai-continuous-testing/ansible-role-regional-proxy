@@ -25,3 +25,5 @@ java_bin: "{{ java_installation_folder }}\\jre{{ java_version }}\\bin\\java.exe"
 
 __custom_download_username: "myuser"
 __custom_download_password: "mypassword"
+
+nginx_conf: "{{ installation_folder }}\\config\\nginx-conf"

@@ -9,6 +9,9 @@ Requirements
 
 * [ansible-role-java8](https://github.com/ExperitestOfficial/ansible-role-java8) must be installed on all machines. <br>
 * Supports windows, linux and mac os hosts only.
+* For multi-region proxy support, keep private and public certifates with the following names in ansible project under your inventories and provide relative path in certificate_folder parameter (e.g. certificate_folder: inventories/cloud1/files).
+  * server_private_key.key
+  * server_public_key.crt
 
 Role Variables
 --------------
@@ -31,6 +34,8 @@ Role Variables
 | clear_temp_folder | remove temp folder after installation | boolean | False | no |
 | clear_before_install | removing old installation before installing new version | boolean | False | no |
 | kill_notepad | kill notepad/notepadd++ apps on windows | boolean | False | no |
+| nginx_certificate_install | should copy the nginx server certificates to regional proxy machines | boolean | False | no |
+| certificate_folder | should be relative path of certificate folder where the server_private_key.key and server_public_key.crt files kept (e.g. inventories/cloud1/files), it will be useful when nginx_certificate_install is True | string | ./files | when nginx_certificate_install is set to True |
 
 Example Playbook
 ----------------

@@ -52,3 +52,4 @@ java_download_url: "https://{{ cdn_name }}/{{ java_relative_path }}/{{ java_down
 
 pairing_file_name: pairing
 
+nginx_certificate_install: False

@@ -21,6 +21,29 @@
   - extra_java_options  
   - logs_folder
 
+# vaidate nginx certificates
+- name: validate nginx server certificates 
+  block:
+    
+    - name: check if server private key file exists to copy
+      stat:
+        path: "{{ certificate_folder | default('files') }}/server_private_key.key"
+      delegate_to: localhost
+      register: server_key_file
+    
+    - name: check if server public certificate file exists to copy
+      stat:
+        path: "{{ certificate_folder | default('files') }}/server_public_key.crt"
+      delegate_to: localhost
+      register: server_cert_file
+    
+    - name: fail if certificates are not found
+      fail:
+        msg: "nginx server certificates not found in path {{ certificate_folder | default('files') }}"
+      when: (not server_key_file.stat.exists) or (not server_cert_file.stat.exists) 
+
+  when: nginx_certificate_install == True
+
 # required dependencies
 
 - name: make sure epel-release is installed
@@ -304,6 +327,25 @@
   become: yes
   with_items:
     - "{{ delete_vmoptions.files }}"
+
+# copy nginx server certificates
+- name: copy nginx certificates
+  block:
+   
+    - name: copy nginx server private key file
+      copy:
+        src: "{{ certificate_folder | default('files') }}/server_private_key.key"
+        dest: "{{ nginx_conf }}/"
+      become: yes
+      
+    - name: copy nginx server public certificate file
+      copy:
+        src: "{{ certificate_folder | default('files') }}/server_public_key.crt"
+        dest: "{{ nginx_conf }}/"
+      become: yes
+
+  when: nginx_certificate_install == True
+
 
 # expose role output
 
