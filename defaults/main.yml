@@ -10,7 +10,7 @@ required_modifiable_fields:
   - custom_download_password
 
 app_name: regional-proxy
-__app_version: 21.3.11014
+__app_version: 21.3.11229
 
 main_class: "com.experitest.nginx.ManagerMain"
 
