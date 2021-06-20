@@ -20,7 +20,7 @@ Role Variables
 |------|-------------|:----:|:-----:|:-----:|
 | state | should the application be present or absent | present, absent | present | no |
 | app_version | application version to install | string | 12.12.7794 | no |
-| nginx_version | nginx version to install for linux | string | 1.19.1 | no |
+| nginx_version | nginx version to install for linux | string | 1.19.8 | no |
 | server_port | port number for the server | number | 8085 | no |
 | extra_application_properties | additional props to be override in application.properties file | dict | {} | no |
 | extra_logback_properties | additional props to be override in logback.properties file | dict | {} | no |
