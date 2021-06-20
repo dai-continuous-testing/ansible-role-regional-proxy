@@ -20,7 +20,7 @@ __jmx_port: 51239
 
 __java_version: 8u292-b10
 
-__nginx_version: 1.19.1
+__nginx_version: 1.19.8
 
 extra_java_options: []
 
