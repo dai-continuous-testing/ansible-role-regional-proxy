@@ -8,6 +8,7 @@ required_modifiable_fields:
   - java_version
   - custom_download_username
   - custom_download_password
+  - nginx_version
 
 app_name: regional-proxy
 __app_version: 20.2.8326
@@ -18,6 +19,8 @@ __server_port: 8085
 __jmx_port: 51239
 
 __java_version: 8u292-b10
+
+__nginx_version: 1.19.1
 
 extra_java_options: []
 
