@@ -78,9 +78,9 @@
     state: present
   become: yes
 
-- name: make sure nginx 1.16.1 is installed
+- name: "make sure nginx {{ nginx_version }} is installed"
   yum:
-    name: nginx-1.16.1
+    name: "nginx-{{ nginx_version }}"
     state: present
     lock_timeout: 180
   become: yes
