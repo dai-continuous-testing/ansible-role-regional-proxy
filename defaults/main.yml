@@ -18,7 +18,7 @@ main_class: "com.experitest.nginx.ManagerMain"
 __server_port: 8085
 __jmx_port: 51239
 
-__java_version: 8u292-b10
+__java_version: 17.0.3_7
 
 __nginx_version: 1.19.8
 
