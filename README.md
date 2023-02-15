@@ -26,7 +26,6 @@ Role Variables
 | extra_logback_properties | additional props to be override in logback.properties file | dict | {} | no |
 | extra_java_options | extand java options | array of strings | [] | no |
 | installation_root_folder | the root folder in which the application will be installed under regional-proxy-{version} folder | string | for mac: /Applications/Experitest <br> for windows: C:\\Experitest <br> for linux: /opt/Experitest | no |
-| jmx_port | port number for jmx inspection | number | 51239 | no |
 | java_version | java jre version to install | string | 8u292-b10 | no |
 | custom_download_url | custom url to download the installation from (zip format) | string |  | no |
 | custom_download_username | username to download from custom url on windows | string |  | no |

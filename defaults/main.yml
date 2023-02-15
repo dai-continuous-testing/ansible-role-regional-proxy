@@ -3,7 +3,6 @@
 required_modifiable_fields:
   - app_version
   - server_port
-  - jmx_port
   - installation_root_folder
   - java_version
   - custom_download_username
@@ -11,14 +10,13 @@ required_modifiable_fields:
   - nginx_version
 
 app_name: regional-proxy
-__app_version: 20.2.8326
+__app_version: 22.3.14150
 
 main_class: "com.experitest.nginx.ManagerMain"
 
 __server_port: 8085
-__jmx_port: 51239
 
-__java_version: 8u292-b10
+__java_version: 17.0.3_7
 
 __nginx_version: 1.19.8
 

@@ -12,7 +12,6 @@
   - installation_folder
   - clear_before_install
   - server_port
-  - jmx_port
   - installer_file_name
   - s3_download_url
   - launcher_file_name
@@ -320,7 +319,6 @@
   set_fact:
     "{{ sanitize_role_name }}":
       server_port: "{{ server_port }}"
-      jmx_port: "{{ jmx_port }}"
       installation_folder: "{{ installation_folder }}"
       configuration_file: "{{ installation_folder }}\\config\\application.properties"
       service_name: "{{ service_name }}"
