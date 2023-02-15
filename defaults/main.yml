@@ -3,7 +3,6 @@
 required_modifiable_fields:
   - app_version
   - server_port
-  - jmx_port
   - installation_root_folder
   - java_version
   - custom_download_username
@@ -16,7 +15,6 @@ __app_version: 22.3.14150
 main_class: "com.experitest.nginx.ManagerMain"
 
 __server_port: 8085
-__jmx_port: 51239
 
 __java_version: 17.0.3_7
 

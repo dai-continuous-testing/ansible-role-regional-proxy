@@ -11,7 +11,6 @@
   - installation_folder
   - clear_before_install
   - server_port
-  - jmx_port
   - service_plist_file_path
   - installer_file_name
   - ansible_user_id
@@ -257,7 +256,6 @@
   set_fact:
     "{{ sanitize_role_name }}":
       server_port: "{{ server_port }}"
-      jmx_port: "{{ jmx_port }}"
       installation_folder: "{{ installation_folder }}"
       configuration_file: "{{ installation_folder }}/config/application.properties"
       service_plist_file_path: "{{ service_plist_file_path }}"
