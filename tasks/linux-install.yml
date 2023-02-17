@@ -13,7 +13,6 @@
   - installation_folder
   - clear_before_install
   - server_port
-  - jmx_port
   - service_file_path
   - installer_file_name
   - ansible_user_id
