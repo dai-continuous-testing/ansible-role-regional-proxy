@@ -37,6 +37,8 @@ Role Variables
 | kill_notepad | kill notepad/notepadd++ apps on windows | boolean | False | no |
 | nginx_certificate_install | should copy the nginx server certificates to regional proxy machines | boolean | False | no |
 | certificate_folder | should be relative path of certificate folder where the server_private_key.key and server_public_key.crt files kept (e.g. inventories/cloud1/files), it will be useful when nginx_certificate_install is True | string | ./files | when nginx_certificate_install is set to True |
+| download | only download the release version | boolean | True | no |
+| deploy | only deploy the release version | boolean | True | no |
 
 Example Playbook
 ----------------
