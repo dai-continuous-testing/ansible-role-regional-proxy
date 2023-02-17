@@ -2,7 +2,9 @@
 # validation
 
 - name: assert all vars are set
-  assert: { that: "{{ item }} != '' " }
+  assert: 
+    that: "{{ item }} != '' " 
+    quiet: true
   with_items:
   - app_name
   - clear_temp_folder
@@ -147,30 +149,6 @@
     timeout: "{{ download_timeout | default(60) }}"
   when: custom_download_url != ""
 
-# stop old service
-
-- name: stop the old service
-  systemd:
-    name: "{{ service_name }}"
-    state: stopped
-  ignore_errors: yes
-  become: yes
-
-- name: stop the nginx service
-  systemd:
-    name: nginx
-    state: stopped
-  ignore_errors: yes
-  become: yes
-
-- name: kill nginx processes
-  shell: |
-    killall nginx
-  register: killnginxresult
-  changed_when: killnginxresult.rc == 0
-  failed_when: killnginxresult.rc != 0 and killnginxresult.rc != 1
-  become: yes
-  
 # delete old installation (optional)
 
 - name: clear old installation folder
@@ -206,22 +184,6 @@
 
 - name: synchronize zip content to installation folder
   command: "rsync -r {{ temp_folder }}/{{ (installer_file_name | splitext)[0] }}/{{ convention }}/ {{ installation_folder }}/"
-  become: yes
-  notify:
-    - start the service
-
-- name: copy service file
-  template:
-    src: systemd.service.j2
-    dest: "{{ service_file_path }}"
-  become: yes
-
-- name: copy start script
-  template:
-    src: start.sh.j2
-    dest: "{{ installation_folder }}/{{ launcher_file_name }}"
-    mode: 0777
-    owner: "{{ ansible_user_id }}"
   become: yes
 
 # configure installed 
@@ -262,15 +224,6 @@
   file:
     path: "{{ installation_folder }}/logs"
     state: absent
-  become: yes
-
-- name: create sym link for logs folder
-  file:
-    src: "{{ logs_folder }}"
-    dest: "{{ installation_folder }}/logs"
-    state: link
-    mode: 0777
-    owner: "{{ ansible_user_id }}"
   become: yes
 
 - name: create nginx user
@@ -327,38 +280,3 @@
   become: yes
   with_items:
     - "{{ delete_vmoptions.files }}"
-
-# copy nginx server certificates
-- name: copy nginx certificates
-  block:
-   
-    - name: copy nginx server private key file
-      copy:
-        src: "{{ certificate_folder | default('files') }}/server_private_key.key"
-        dest: "{{ nginx_conf }}/"
-      become: yes
-      
-    - name: copy nginx server public certificate file
-      copy:
-        src: "{{ certificate_folder | default('files') }}/server_public_key.crt"
-        dest: "{{ nginx_conf }}/"
-      become: yes
-
-  when: nginx_certificate_install == True
-
-
-# expose role output
-
-- name: sanitize role name
-  set_fact:
-    sanitize_role_name: "{{ role_name | replace('-', '_') | regex_replace('([^A-Za-z0-9_])', '') | trim }}"
-
-- name: expose role output
-  set_fact:
-    "{{ sanitize_role_name }}":
-      server_port: "{{ server_port }}"
-      jmx_port: "{{ jmx_port }}"
-      installation_folder: "{{ installation_folder }}"
-      configuration_file: "{{ installation_folder }}/config/application.properties"
-      java_bin: "{{ java_bin }}"
-      service_name: "{{ service_name }}"
