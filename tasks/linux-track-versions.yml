@@ -85,7 +85,6 @@
 # copy nginx server certificates
 - name: copy nginx certificates
   block:
-   
     - name: copy nginx server private key file
       copy:
         src: "{{ certificate_folder | default('files') }}/server_private_key.key"
@@ -99,6 +98,20 @@
       become: yes
 
   when: nginx_certificate_install == True
+
+- name: copy service file
+  template:
+    src: systemd.service.j2
+    dest: "{{ service_file_path }}"
+  become: yes
+
+- name: copy start script
+  template:
+    src: start.sh.j2
+    dest: "{{ installation_folder }}/{{ launcher_file_name }}"
+    mode: 0777
+    owner: "{{ ansible_user_id }}"
+  become: yes
 
 - name: notify to start service
   command: echo "notify to start service..."
