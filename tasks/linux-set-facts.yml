@@ -8,7 +8,6 @@
   set_fact:
     "{{ sanitize_role_name }}":
       server_port: "{{ server_port }}"
-      jmx_port: "{{ jmx_port }}"
       installation_folder: "{{ installation_folder }}"
       configuration_file: "{{ installation_folder }}/config/application.properties"
       java_bin: "{{ java_bin }}"
