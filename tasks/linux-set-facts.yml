@@ -1,0 +1,15 @@
+# expose role output
+
+- name: sanitize role name
+  set_fact:
+    sanitize_role_name: "{{ role_name | replace('-', '_') | regex_replace('([^A-Za-z0-9_])', '') | trim }}"
+
+- name: expose role output
+  set_fact:
+    "{{ sanitize_role_name }}":
+      server_port: "{{ server_port }}"
+      installation_folder: "{{ installation_folder }}"
+      configuration_file: "{{ installation_folder }}/config/application.properties"
+      java_bin: "{{ java_bin }}"
+      service_name: "{{ service_name }}"
+      
