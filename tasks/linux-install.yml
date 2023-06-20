@@ -68,16 +68,16 @@
     lock_timeout: 180
   become: yes
 
-- name: Add nginx repository
-  yum_repository:
-    name: nginx
-    description: Nginx YUM repo
-    baseurl: http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-    gpgkey: https://nginx.org/keys/nginx_signing.key
-    gpgcheck: yes
-    enabled: yes
-    state: present
-  become: yes
+# - name: Add nginx repository
+#   yum_repository:
+#     name: nginx
+#     description: Nginx YUM repo
+#     baseurl: http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+#     gpgkey: https://nginx.org/keys/nginx_signing.key
+#     gpgcheck: yes
+#     enabled: yes
+#     state: present
+#   become: yes
 
 - name: "make sure nginx {{ nginx_version }} is installed"
   yum:
