@@ -26,9 +26,10 @@
         state: present
         filename: nginx
       become: yes
-      
+
     - name: "make sure nginx {{ nginx_version }} is installed"
       apt:
         name: "nginx={{ nginx_version }}-1~jammy"
         state: present
+        lock_timeout: 180
       become: yes
