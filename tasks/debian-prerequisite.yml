@@ -1,0 +1,45 @@
+# required dependencies
+
+- name: make sure dependencies is installed
+  apt:
+    name: "{{ item }}"
+    state: present
+    lock_timeout: 180
+  become: yes
+  with_items:
+    - rsync
+    - unzip
+    - psmisc
+
+- name: Make sure AppArmor and UFW is not present
+  apt:
+    name: "{{ item }}"
+    state: absent
+    lock_timeout: 180
+  become: yes
+  with_items:
+    - apparmor
+    - ufw
+
+- name: Add Nginx APT repository
+  block:
+    - name: Add APT signing key
+      apt_key:
+        url: "https://nginx.org/keys/nginx_signing.key"
+        keyring: "/etc/apt/trusted.gpg.d/nginx.gpg"
+        state: present
+      become: yes
+        
+    - name: Add repo
+      apt_repository:
+        repo: "deb http://nginx.org/packages/ubuntu {{ ansible_distribution_release }} nginx"
+        state: present
+        filename: nginx
+      become: yes
+
+    - name: "make sure nginx {{ nginx_version }} is installed"
+      apt:
+        name: "nginx={{ nginx_version }}-1~jammy"
+        state: present
+        lock_timeout: 180
+      become: yes
