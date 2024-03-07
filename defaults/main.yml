@@ -11,7 +11,7 @@ required_modifiable_fields:
   - apt_nginx_version
 
 app_name: regional-proxy
-__app_version: 24.2.20145
+__app_version: 24.2.20281
 
 main_class: "com.experitest.nginx.ManagerMain"
 
