@@ -19,9 +19,7 @@ __server_port: 8085
 
 __java_version: 17.0.3_7
 
-__nginx_version: 1.19.8
-
-__apt_nginx_version: 1.24.0
+__nginx_version: 1.25.4
 
 extra_java_options: []
 
