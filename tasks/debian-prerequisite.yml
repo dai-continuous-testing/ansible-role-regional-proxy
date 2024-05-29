@@ -42,4 +42,5 @@
         name: "nginx={{ nginx_version }}-1~jammy"
         state: present
         lock_timeout: 180
+        allow_downgrade: yes
       become: yes
