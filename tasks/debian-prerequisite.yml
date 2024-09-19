@@ -32,14 +32,14 @@
         
     - name: Add repo
       apt_repository:
-        repo: "deb http://nginx.org/packages/mainline/ubuntu {{ ansible_distribution_release }} nginx"
+        repo: "deb https://nginx.org/packages/ubuntu {{ ansible_distribution_release }} nginx"
         state: present
         filename: nginx
       become: yes
 
-    - name: "make sure nginx {{ nginx_version }} is installed"
+    - name: "make sure nginx {{ apt_nginx_version }} is installed"
       apt:
-        name: "nginx={{ nginx_version }}-1~jammy"
+        name: "nginx={{ apt_nginx_version }}-1~jammy"
         state: present
         lock_timeout: 180
         allow_downgrade: yes
