@@ -39,7 +39,7 @@
 
     - name: "make sure nginx {{ apt_nginx_version }} is installed"
       apt:
-        name: "nginx={{ apt_nginx_version }}-1~jammy"
+        name: "nginx={{ apt_nginx_version }}-1~{{ ansible_distribution_release }}"
         state: present
         lock_timeout: 180
         allow_downgrade: yes
