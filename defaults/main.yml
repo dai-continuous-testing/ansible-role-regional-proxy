@@ -21,7 +21,7 @@ __java_version: 17.0.3_7
 
 __nginx_version: 1.26.1
 
-__apt_nginx_version: 1.29.1
+__apt_nginx_version: 1.28.0
 
 extra_java_options: []
 
