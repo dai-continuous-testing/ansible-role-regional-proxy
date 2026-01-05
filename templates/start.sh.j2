@@ -15,7 +15,7 @@ export SYSTEM_VERSION_COMPAT=0
 JAVA_BIN={{ java_bin }}
 
 $JAVA_BIN -cp ".:lib/*" \
-    -Xmx2048m \
+    -Xmx4096m \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath=./logs \
     -Dfile.encoding=UTF8 \
