@@ -12,5 +12,5 @@
     -Djdk.nio.maxCachedBufferSize=262144 ^
     -Djava.net.preferIPv4Stack=true ^
     -Djava.library.path=.;bin; ^
-    {{ extra_java_options | join(' ') }} ^
+    {{ java_options | join(' ') }} ^
     {{ main_class }}
